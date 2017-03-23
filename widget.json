@@ -1,0 +1,35 @@
+{
+  "name": "Offline Video",
+  "package": "com.fliplet.online-offline",
+  "version": "1.0.0",
+  "icon": "img/icon.png",
+  "tags": ["type:component", "category:general"],
+  "provider_only": false,
+  "providers": [
+    "com.fliplet.file-picker"
+  ],
+  "references": [],
+  "html_tag": "div",
+  "interface": {
+    "dependencies": [
+      "fliplet-core",
+      "fliplet-studio-ui"
+    ],
+    "assets": [
+      "js/interface.js",
+      "css/interface.css"
+    ]
+  },
+  "build": {
+    "dependencies": [
+      "jquery",
+      "bootstrap",
+      "fliplet-core",
+      "font-awesome"
+    ],
+    "assets": [
+      "js/build.js",
+      "css/build.css"
+    ]
+  }
+}
