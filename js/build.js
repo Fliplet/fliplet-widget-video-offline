@@ -1,18 +1,23 @@
-if (screenfull.enabled) {
+(function(){
+  var videoEntersFullscreen = function () {
+    Fliplet.App.Orientation.unlock();
+  }
+  var videoExitsFullscreen = function () {
+    Fliplet.App.Orientation.lock();
+  }
+
   screenfull.onchange(function onFullScreenChange () {
     if (!screenfull.isFullscreen) {
-      return Fliplet.App.Orientation.lock();
+      return videoExitsFullscreen();
     }
-    Fliplet.App.Orientation.unlock();
+    videoEntersFullscreen();
   });
-}
 
-$('[data-video-online-id] video').each(function(){
-  var video = this;
-
-  if (!screenfull.enabled) {
-    // iOS likes to be different
-    video.addEventListener('webkitbeginfullscreen', Fliplet.App.Orientation.unlock);
-    video.addEventListener('webkitendfullscreen', Fliplet.App.Orientation.lock);
-  }
-});
+  $('[data-video-online-id] video').each(function(){
+    if (!screenfull.enabled) {
+      // iOS likes to be different
+      this.addEventListener('webkitbeginfullscreen', videoEntersFullscreen);
+      this.addEventListener('webkitendfullscreen', videoExitsFullscreen);
+    }
+  });
+})();
