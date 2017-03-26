@@ -1,7 +1,7 @@
 <div data-video-online-id="{{id}}" class="video-wrapper">
 {{#if file.video.selectFiles.id}}
   <div class="embed-responsive embed-responsive-16by9">
-    <video src='{{file.video.selectFiles.url}}' width="width" height="height" autobuffer controls type="mimeType" style='background: rgba(0,0,0,0.7)'></video>
+    <video src='{{file.video.selectFiles.url}}' autobuffer controls preload="auto" style='background: rgba(0,0,0,0.7)'></video>
   </div>
 {{else}}
   <div data-video-id="{{id}}" class="video-placeholder">&nbsp;</div>
