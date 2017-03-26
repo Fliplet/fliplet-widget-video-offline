@@ -28,7 +28,6 @@
       "font-awesome"
     ],
     "assets": [
-      "js/build.js",
       "css/build.css"
     ]
   }
