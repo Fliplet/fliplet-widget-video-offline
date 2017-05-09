@@ -8,7 +8,6 @@
   "providers": [
     "com.fliplet.file-picker"
   ],
-  "references": [],
   "html_tag": "div",
   "interface": {
     "dependencies": [
