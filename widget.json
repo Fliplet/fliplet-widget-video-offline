@@ -31,5 +31,8 @@
       "js/build.js",
       "css/build.css"
     ]
-  }
+  },
+  "references": [
+    "file.video.selectFiles.id:mediaFile"
+  ]
 }
