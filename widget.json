@@ -8,7 +8,6 @@
   "providers": [
     "com.fliplet.file-picker"
   ],
-  "references": [],
   "html_tag": "div",
   "interface": {
     "dependencies": [
@@ -31,5 +30,8 @@
       "js/build.js",
       "css/build.css"
     ]
-  }
+  },
+  "references": [
+    "file.video.selectFiles.id:mediaFile"
+  ]
 }
