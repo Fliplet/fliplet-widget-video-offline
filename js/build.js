@@ -6,7 +6,7 @@
     Fliplet.App.Orientation.lock();
   }
 
-  if (screenfull) {
+  if (screenfull.enabled) {
     screenfull.onchange(function onFullScreenChange() {
       if (!screenfull.isFullscreen) {
         return videoExitsFullscreen();
