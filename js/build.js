@@ -1,19 +1,21 @@
-(function(){
-  var videoEntersFullscreen = function () {
+(function() {
+  var videoEntersFullscreen = function() {
     Fliplet.App.Orientation.unlock();
   }
-  var videoExitsFullscreen = function () {
+  var videoExitsFullscreen = function() {
     Fliplet.App.Orientation.lock();
   }
 
-  screenfull.onchange(function onFullScreenChange () {
-    if (!screenfull.isFullscreen) {
-      return videoExitsFullscreen();
-    }
-    videoEntersFullscreen();
-  });
+  if (screenfull) {
+    screenfull.onchange(function onFullScreenChange() {
+      if (!screenfull.isFullscreen) {
+        return videoExitsFullscreen();
+      }
+      videoEntersFullscreen();
+    });
+  }
 
-  $('[data-video-online-id] video').each(function(){
+  $('[data-video-online-id] video').each(function() {
     if (!screenfull.enabled) {
       // iOS likes to be different
       this.addEventListener('webkitbeginfullscreen', videoEntersFullscreen);
