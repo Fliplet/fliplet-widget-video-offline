@@ -7,16 +7,16 @@ var $filePicker;
 var btnSelector = {
   video: '.add-video'
 };
-var file = data.file || {
+var file = $.extend(true, data.file, {
   'video': {
-      selectFiles: {},
-      selectMultiple: false,
-      type: 'video'
+    selectFiles: {},
+    selectMultiple: false,
+    type: 'video'
   }
-};
+});
 
 // 1. Fired from Fliplet Studio when the external save button is clicked
-Fliplet.Widget.onSaveRequest(function () {
+Fliplet.Widget.onSaveRequest(function() {
   if (providerInstance) {
     return providerInstance.forwardSaveRequest();
   }
@@ -33,11 +33,14 @@ function save(notifyComplete) {
     }
   }, function(error) {
     console.log(error);
+    Fliplet.Studio.emit('reload-widget-instance', widgetId);
   });
 }
 
 function beginAnimationFilePicker() {
-  Fliplet.Studio.emit('widget-save-label-update', {  text : 'Select'   });
+  Fliplet.Studio.emit('widget-save-label-update', {
+    text: 'Select'
+  });
   Fliplet.Widget.toggleCancelButton(false);
   var animProgress = 100;
   var animInterval;
@@ -45,16 +48,18 @@ function beginAnimationFilePicker() {
 
   $filePicker.show();
 
-  animInterval = setInterval(function () {
+  animInterval = setInterval(function() {
     animProgress -= 2;
-    $filePicker.css({left: animProgress + '%'});
+    $filePicker.css({
+      left: animProgress + '%'
+    });
     if (animProgress == 0) {
       clearInterval(animInterval);
     }
   }, 5);
 }
 
-$('.add-video').on('click', function (e) {
+$('.add-video').on('click', function(e) {
   e.preventDefault();
 
   var _this = $(this);
@@ -63,7 +68,7 @@ $('.add-video').on('click', function (e) {
   Fliplet.Widget.toggleSaveButton(config.selectFiles.length > 0);
   providerInstance = Fliplet.Widget.open('com.fliplet.file-picker', {
     data: config,
-    onEvent: function (e, data) {
+    onEvent: function(e, data) {
       switch (e) {
         case 'widget-rendered':
           beginAnimationFilePicker();
@@ -80,7 +85,9 @@ $('.add-video').on('click', function (e) {
   });
 
   providerInstance.then(function(providerData) {
-    Fliplet.Studio.emit('widget-save-label-update', {  text : 'Save & Close'   });
+    Fliplet.Studio.emit('widget-save-label-update', {
+      text: 'Save & Close'
+    });
     Fliplet.Widget.info('');
     Fliplet.Widget.toggleCancelButton(true);
     Fliplet.Widget.toggleSaveButton(true);
@@ -95,18 +102,21 @@ $('.add-video').on('click', function (e) {
 });
 
 $('.video-remove').on('click', function() {
-  delete data.file;
+  data.file = {};
   $('.video .add-video').text('Browse your media library');
   $('.video .info-holder').addClass('hidden');
   $('.video .file-title span').text('');
+  save();
 });
 
-window.addEventListener('message', function (event) {
-  if (event.data === 'cancel-button-pressed'){
+window.addEventListener('message', function(event) {
+  if (event.data === 'cancel-button-pressed') {
     if (!providerInstance) return;
     providerInstance.close();
     providerInstance = null;
-    Fliplet.Studio.emit('widget-save-label-update', {  text : 'Save & Close'   });
+    Fliplet.Studio.emit('widget-save-label-update', {
+      text: 'Save & Close'
+    });
     Fliplet.Widget.toggleCancelButton(true);
     Fliplet.Widget.toggleSaveButton(true);
     Fliplet.Widget.info('');
