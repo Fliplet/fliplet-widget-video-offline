@@ -37,8 +37,3 @@
 .info-holder .btn-link.text-danger:hover {
     color: #a94442 !important;
 }
-@media only screen and (min-width: 488px) {
-    header {
-        font-size: 1.0em;
-    }
-}
