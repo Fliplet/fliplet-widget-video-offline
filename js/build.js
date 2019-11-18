@@ -15,7 +15,14 @@
     });
   }
 
-  $('[data-video-online-id] video').each(function() {
+  Fliplet.Widget.instance('video-online', function (data) {
+    var url = _.get(data, 'file.video.bundledFile.url');
+
+    if (url) {
+      var $video = $('[data-video-online-id="' + data.id + '"] video');
+      $video.attr('url', url);
+    }
+
     if (!screenfull.enabled) {
       // iOS likes to be different
       this.addEventListener('webkitbeginfullscreen', videoEntersFullscreen);

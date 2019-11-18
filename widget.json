@@ -32,6 +32,6 @@
     ]
   },
   "references": [
-    "file.video.selectFiles.id:mediaFile"
+    "file.video.bundledFile.id:mediaFile"
   ]
 }
