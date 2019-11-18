@@ -20,7 +20,7 @@
 
     if (url) {
       var $video = $('[data-video-online-id="' + data.id + '"] video');
-      $video.attr('url', url);
+      $video.attr('url', Fliplet.Media.authenticate(url));
     }
 
     if (!screenfull.enabled) {
