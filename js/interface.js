@@ -92,6 +92,11 @@ $('.add-video').on('click', function(e) {
     Fliplet.Widget.toggleCancelButton(true);
     Fliplet.Widget.toggleSaveButton(true);
     file.video.selectFiles = providerData.data.length === 1 ? providerData.data[0] : providerData.data;
+
+    file.video.bundledFile = _.pick(file.video.selectFiles, [
+      'id', 'path', 'url', 'contentType', 'ext', 'updatedAt'
+    ]);
+
     data.file = file;
     providerInstance = null;
     save();

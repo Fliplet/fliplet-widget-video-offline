@@ -11,6 +11,7 @@
   "html_tag": "div",
   "interface": {
     "dependencies": [
+      "lodash",
       "fliplet-core",
       "fliplet-studio-ui"
     ],
@@ -21,6 +22,7 @@
   },
   "build": {
     "dependencies": [
+      "lodash",
       "jquery",
       "bootstrap",
       "fliplet-core",
@@ -32,6 +34,6 @@
     ]
   },
   "references": [
-    "file.video.selectFiles.id:mediaFile"
+    "file.video.bundledFile.id:mediaFile"
   ]
 }
