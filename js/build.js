@@ -15,18 +15,25 @@
     });
   }
 
-  Fliplet.Widget.instance('video-online', function (data) {
+  Fliplet.Widget.instance('video-offline', function (data) {
     var url = _.get(data, 'file.video.bundledFile.url');
+    var $container = $(this);
+    var video = $container.find('video').get(0);
 
-    if (url) {
-      var $video = $('[data-video-online-id="' + data.id + '"] video');
-      $video.attr('src', Fliplet.Media.authenticate(url));
+    if (!video) {
+      return;
+    }
+
+    if (url && Fliplet.Media.isRemoteUrl(url)) {
+      Fliplet().then(function () {
+        $(video).attr('src', Fliplet.Media.authenticate(url));
+      });
     }
 
     if (!screenfull.enabled) {
       // iOS likes to be different
-      this.addEventListener('webkitbeginfullscreen', videoEntersFullscreen);
-      this.addEventListener('webkitendfullscreen', videoExitsFullscreen);
+      video.addEventListener('webkitbeginfullscreen', videoEntersFullscreen);
+      video.addEventListener('webkitendfullscreen', videoExitsFullscreen);
     }
   });
 })();
