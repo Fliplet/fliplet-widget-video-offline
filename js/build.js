@@ -16,7 +16,7 @@
   }
 
   Fliplet.Widget.instance('video-offline', function (data) {
-    var url = _.get(data, 'file.video.bundledFile.url');
+    var url = _.get(data, 'file.video.bundledFile.url') || _.get(data, 'file.video.selectFiles.url');
     var $container = $(this);
     var video = $container.find('video').get(0);
 
