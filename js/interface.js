@@ -4,9 +4,6 @@ data.id = widgetId;
 
 var providerInstance;
 var $filePicker;
-var btnSelector = {
-  video: '.add-video'
-};
 var file = $.extend(true, data.file, {
   'video': {
     selectFiles: {},
@@ -53,7 +50,7 @@ function beginAnimationFilePicker() {
     $filePicker.css({
       left: animProgress + '%'
     });
-    if (animProgress == 0) {
+    if (animProgress === 0) {
       clearInterval(animInterval);
     }
   }, 5);
@@ -62,7 +59,6 @@ function beginAnimationFilePicker() {
 $('.add-video').on('click', function(e) {
   e.preventDefault();
 
-  var _this = $(this);
   var config = file.video;
 
   Fliplet.Widget.toggleSaveButton(config.selectFiles.length > 0);
