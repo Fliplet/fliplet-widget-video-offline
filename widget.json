@@ -11,7 +11,6 @@
   "html_tag": "div",
   "interface": {
     "dependencies": [
-      "lodash",
       "fliplet-core",
       "fliplet-utils",
       "fliplet-studio-ui"
@@ -23,7 +22,6 @@
   },
   "build": {
     "dependencies": [
-      "lodash",
       "jquery",
       "bootstrap",
       "fliplet-core",
